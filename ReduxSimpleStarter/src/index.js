@@ -22,4 +22,5 @@ const App = () => { // fat arrow identical to function keyword
 // ReactDOM.render(App);
 // you need to make an instance before passing
 // so you wrap App in JSX tags to make an instance of the component
+
 ReactDOM.render(<App />, document.querySelector('.container'));
