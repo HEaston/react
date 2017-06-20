@@ -2,8 +2,8 @@ import React from 'react';
 import VideoListItem from './video_list_item';
 
 const VideoList = (props) => {
-  const videoItems = props.video.map((video) => {
-    return <VideoListItem video={video} />
+  const videoItems = props.videos.map((video) => {
+    return <VideoListItem key={video.etag} video={video} />
   });
 
   return (
@@ -13,6 +13,7 @@ const VideoList = (props) => {
   );
 };
 
+// good practice to add a key
 // use curly braces when referencing a JS variable
 // className instead of class
 // if refactoring a function based component to a class based component, props turns into this.props

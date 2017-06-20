@@ -9,7 +9,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: 'Insert Value' }; // object {} with properties i.e. term, on the state
+    this.state = { term: '' }; // object {} with properties i.e. term, on the state
     // only ever manually change state in constructor
   }
 
@@ -21,7 +21,6 @@ class SearchBar extends Component {
         <input
           value={this.state.term}
           onChange={event => this.setState({ term: event.target.value })} />
-        Value of the input: {this.state.term}
       </div>
     );
   }
