@@ -1,12 +1,17 @@
+// library
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+// own components
 import SearchBar from './components/searchbar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 const API_KEY = 'AIzaSyBCVV-Fr5Jj4_p8I0cDMui6OYFXYYHSgpk';
 
 class App extends Component {
+  // constructor, videoSearch, render are methods on the App
+
   constructor(props) {
     super(props);
 
@@ -15,21 +20,25 @@ class App extends Component {
       selectedVideo: null
     };
 
-    // sample search
-    YTSearch({key: API_KEY, term:  'surfboards'}, (videos) => {
-      // console.log(data);
-      this.setState({ // setting state causes component to re-render
+    this.videoSearch('gumball');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
+      this.setState({
         videos: videos,
         selectedVideo: videos[0]
       });
-      // this.setState({ videos: videos });
     });
   }
 
   render() {
+    // throttling using lodash to stagger the search
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
+
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={ selectedVideo => this.setState({selectedVideo}) }
