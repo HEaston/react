@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/searchbar';
+import VideoList from './components/video_list';
 const API_KEY = 'AIzaSyBCVV-Fr5Jj4_p8I0cDMui6OYFXYYHSgpk';
 
 class App extends Component {
@@ -22,10 +23,13 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }
 }
+
+//passing prop videos to VideoList
 
 // Take this component's generated HTML and put it
 // on the page (in the DOM)
